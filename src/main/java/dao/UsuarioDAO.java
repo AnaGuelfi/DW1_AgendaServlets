@@ -11,7 +11,7 @@ public class UsuarioDAO {
 	
 	String serverName="localhost";
 	String dataBasePort="3306";
-	String mydatabase="employees";
+	String mydatabase="agenda";
 	String url="jdbc:mysql://" + serverName + ":" + dataBasePort + "/" + mydatabase;
 	String usernameb="root";
 	String passwordb="";

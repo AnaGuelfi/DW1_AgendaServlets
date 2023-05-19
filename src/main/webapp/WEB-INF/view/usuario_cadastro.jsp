@@ -26,7 +26,7 @@
 			<td><input type="email" name="email" /></td>
 		</tr>
 	</table>
-</form>
 	<input type="submit" value="Enviar" />
+</form>
 </body>
 </html>
