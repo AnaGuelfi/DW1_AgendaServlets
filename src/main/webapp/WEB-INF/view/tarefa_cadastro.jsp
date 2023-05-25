@@ -4,9 +4,9 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Tarefas</title>
+<title>Insert title here</title>
 </head>
 <body>
-	<a href = "/AgendaServlet/TaskServlet">Cadastrar Nova Tarefa</a>
+
 </body>
 </html>
