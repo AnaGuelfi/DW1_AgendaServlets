@@ -1,12 +1,14 @@
 package controller;
 
 import jakarta.servlet.RequestDispatcher;
+import jakarta.servlet.ServletContext;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 import model.Tarefa;
+import model.Usuario;
 
 import java.io.IOException;
 import java.text.ParseException;
@@ -40,6 +42,7 @@ public class TarefaServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
 		String titulo = request.getParameter("titulo");
 		String descricao = request.getParameter("descricao");
 		String data_criacao = request.getParameter("data_criacao");
@@ -51,7 +54,11 @@ public class TarefaServlet extends HttpServlet {
 		t.setDescricao(descricao);
 		t.setStatus(status);
 		
-		java.text.DateFormat fmt = new java.text.SimpleDateFormat("dd/MM/yyyy");
+		ServletContext sc = getServletContext();
+		Usuario u = (Usuario) sc.getAttribute("usuario");
+		t.setU(u);
+		
+		java.text.DateFormat fmt = new java.text.SimpleDateFormat("yyyy-MM-dd");
 		java.sql.Date data_criacaoSQL;
 		try {
 			data_criacaoSQL = new java.sql.Date(fmt.parse(data_criacao).getTime());
@@ -73,6 +80,13 @@ public class TarefaServlet extends HttpServlet {
 			e.printStackTrace();
 		}
 		
+		try {
+			tdao.buscarTarefas(u.getId());
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		request.setAttribute("lista_tarefas", tdao.getTarefasUsuario());
 		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_tarefas.jsp");
 		dispatcher.forward(request, response);
 	}

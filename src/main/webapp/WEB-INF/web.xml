@@ -39,4 +39,14 @@
     <servlet-name>TarefaServlet</servlet-name>
     <url-pattern>/TarefaServlet</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>UsuarioTarefa</display-name>
+    <servlet-name>UsuarioTarefa</servlet-name>
+    <servlet-class>controller.UsuarioTarefa</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>UsuarioTarefa</servlet-name>
+    <url-pattern>/UsuarioTarefa</url-pattern>
+  </servlet-mapping>
 </web-app>
