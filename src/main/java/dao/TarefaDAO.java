@@ -22,13 +22,6 @@ public class TarefaDAO {
 	ArrayList<Tarefa> tarefasUsuario = new ArrayList<Tarefa>();
 	
 	public ArrayList<Tarefa> getTarefasUsuario() {
-		for(Tarefa tt : tarefasUsuario) {
-    		System.out.println("Título: " + tt.getTitulo());
-    		System.out.println("Descrição: " + tt.getDescricao());
-    		System.out.println("Data de Criação: " + tt.getData_criacao());
-    		System.out.println("Data de Conclusao: " + tt.getData_conclusao());
-    		System.out.println("Status: " + tt.getStatus());
-    	}
 		return tarefasUsuario;
 	}
 
@@ -79,6 +72,7 @@ public class TarefaDAO {
         	ResultSet rs = preparedStatement.executeQuery();
         	while(rs.next()) {
         		t = new Tarefa();
+        		t.setId(rs.getInt("id"));
         		t.setTitulo(rs.getString("titulo"));
         		t.setDescricao(rs.getString("descricao"));
         		t.setData_criacao(rs.getDate("data_criacao"));
@@ -89,6 +83,24 @@ public class TarefaDAO {
         }catch(SQLException ex) {
         	ex.printStackTrace();
         }
+	}
+	
+	public void excluirTarefa(int id) throws ClassNotFoundException{
+        String DELETE_SQL = "DELETE FROM tarefas WHERE id = ?";
+        
+        Class.forName("com.mysql.jdbc.Driver");
+        
+        try (Connection connection = DriverManager.getConnection(url,usernameb,passwordb);
+        	PreparedStatement preparedStatement = connection.prepareStatement(DELETE_SQL)){
+        	preparedStatement.setInt(1, id);
+        	System.out.println(preparedStatement);
+        	
+        	preparedStatement.executeUpdate();
+        	
+        }catch(SQLException e) {
+        	e.printStackTrace();
+        }
+        
 	}
 	
 }

@@ -14,6 +14,7 @@
 <%@ page import="model.Tarefa" %>
 <table>
 	<tr>
+		<th>ID</th>
 		<th>Título</th>
 		<th>Descrição</th>
 		<th>Data de Criação</th>
@@ -22,6 +23,9 @@
 	</tr>
 	<c:forEach items="${requestScope.lista_tarefas}" var="c">
 		<tr>
+			<td>
+				${c.id}
+			</td>
 			<td>
 				${c.titulo}
 			</td>
@@ -36,6 +40,10 @@
 			</td>
 			<td>
 				${c.status}
+			</td>
+			<td>
+				<input type="hidden" name="id_excluir" value="${c.id}" />
+				<input type="submit" value="Excluir" />
 			</td>
 		</tr>
 	</c:forEach>
