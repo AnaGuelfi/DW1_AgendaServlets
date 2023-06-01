@@ -85,6 +85,57 @@ public class TarefaDAO {
         }
 	}
 	
+	public Tarefa buscarTarefaEdicao(int id_tarefa) throws ClassNotFoundException {
+		String SELECT_USERS_SQL = "SELECT * FROM tarefas WHERE id = ?";
+        
+        Class.forName("com.mysql.jdbc.Driver");
+        
+        Tarefa t = null;
+        
+        try (Connection connection = DriverManager.getConnection(url,usernameb,passwordb);
+        	PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USERS_SQL)){
+        	preparedStatement.setInt(1, id_tarefa);
+        	System.out.println(preparedStatement);
+        	
+        	ResultSet rs = preparedStatement.executeQuery();
+        	if(rs.next()) {
+        		t = new Tarefa();
+        		t.setId(rs.getInt("id"));
+        		t.setTitulo(rs.getString("titulo"));
+        		t.setDescricao(rs.getString("descricao"));
+        		t.setData_criacao(rs.getDate("data_criacao"));
+        		t.setData_conclusao(rs.getDate("data_conclusao"));
+        		t.setStatus(rs.getString("status"));
+        	}
+        }catch(SQLException ex) {
+        	ex.printStackTrace();
+        }
+        
+        return t;
+	}
+	
+	public void alterarTarefa(Tarefa t) throws ClassNotFoundException {
+		 String UPDATE_SQL = "UPDATE tarefas SET titulo = ?, descricao = ?, data_criacao = ?, data_conclusao = ?, status = ? WHERE id = ?";
+	        
+	        Class.forName("com.mysql.jdbc.Driver");
+	        
+	        try (Connection connection = DriverManager.getConnection(url,usernameb,passwordb);
+	        	PreparedStatement preparedStatement = connection.prepareStatement(UPDATE_SQL)){
+	        	preparedStatement.setString(1, t.getTitulo());
+	        	preparedStatement.setString(2, t.getDescricao());
+	        	preparedStatement.setDate(3, t.getData_criacao());
+	        	preparedStatement.setDate(4, t.getData_conclusao());
+	        	preparedStatement.setString(5, t.getStatus());
+	        	preparedStatement.setInt(6, t.getId());
+	        	System.out.println(preparedStatement);
+	        	
+	        	preparedStatement.executeUpdate();
+	        	
+	        }catch(SQLException e) {
+	        	e.printStackTrace();
+	        }
+	}
+	
 	public void excluirTarefa(int id) throws ClassNotFoundException{
         String DELETE_SQL = "DELETE FROM tarefas WHERE id = ?";
         

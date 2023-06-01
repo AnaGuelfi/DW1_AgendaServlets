@@ -20,6 +20,7 @@
 		<th>Data de Criação</th>
 		<th>Data de Conclusão</th>
 		<th>Status</th>
+		<th>Ações</th>
 	</tr>
 	<c:forEach items="${requestScope.lista_tarefas}" var="c">
 		<tr>
@@ -44,6 +45,7 @@
 			<td>
 				<input type="hidden" name="id_excluir" value="${c.id}" />
 				<input type="submit" value="Excluir" />
+				<a href="/AgendaServlet/TaskEditServlet?id_tarefa=${c.id}">Editar Tarefa</a>
 			</td>
 		</tr>
 	</c:forEach>

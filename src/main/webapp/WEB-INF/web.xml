@@ -49,4 +49,14 @@
     <servlet-name>UsuarioTarefa</servlet-name>
     <url-pattern>/UsuarioTarefa</url-pattern>
   </servlet-mapping>
+  <servlet>
+    <description></description>
+    <display-name>TarefaEditarServlet</display-name>
+    <servlet-name>TarefaEditarServlet</servlet-name>
+    <servlet-class>controller.TarefaEditarServlet</servlet-class>
+  </servlet>
+  <servlet-mapping>
+    <servlet-name>TarefaEditarServlet</servlet-name>
+    <url-pattern>/TarefaEditarServlet</url-pattern>
+  </servlet-mapping>
 </web-app>
