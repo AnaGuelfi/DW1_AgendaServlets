@@ -7,6 +7,6 @@
 <title>ERRO</title>
 </head>
 <body>
-<h1>Falha no login!</h1>
+<h1>Falha no login! Tente novamente! <a href="/AgendaServlet/LoginServlet">Login</a></h1>
 </body>
 </html>

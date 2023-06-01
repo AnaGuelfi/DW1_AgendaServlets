@@ -33,32 +33,44 @@ public class UsuarioTarefa extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		ServletContext sc = getServletContext();
-		Usuario u = (Usuario) sc.getAttribute("usuario");
-		try {
-			tdao.buscarTarefas(u.getId());
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
+		String usuario = (String) request.getSession().getAttribute("usuario");
+		if(usuario != null) {
+			ServletContext sc = getServletContext();
+			Usuario u = (Usuario) sc.getAttribute("usuario");
+			try {
+				tdao.buscarTarefas(u.getId());
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+			request.setAttribute("lista_tarefas", tdao.getTarefasUsuario());
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_tarefas.jsp");
+			dispatcher.forward(request, response);
+		} else {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_login.jsp");
+			dispatcher.forward(request, response);
 		}
-		request.setAttribute("lista_tarefas", tdao.getTarefasUsuario());
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_tarefas.jsp");
-		dispatcher.forward(request, response);
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		int id_tarefa = Integer.parseInt(request.getParameter("id_excluir"));
-		
-		try {
-			tdao.excluirTarefa(id_tarefa);
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/tarefa_excluida.jsp");
+		String usuario = (String) request.getSession().getAttribute("usuario");
+		if(usuario != null) {
+			int id_tarefa = Integer.parseInt(request.getParameter("id_excluir"));
+			
+			try {
+				tdao.excluirTarefa(id_tarefa);
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/tarefa_excluida.jsp");
+				dispatcher.forward(request, response);
+			} catch (ClassNotFoundException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}else {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_login.jsp");
 			dispatcher.forward(request, response);
-		} catch (ClassNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
 		}
 	}
 

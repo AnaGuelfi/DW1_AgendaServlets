@@ -49,7 +49,7 @@ public class LoginServlet extends HttpServlet {
 		try {
 			Usuario u = udao.buscarUsuario(login, password);
 			if(u != null) {
-				
+				request.getSession().setAttribute("usuario", login);
 				ServletContext sc = getServletContext();
 				sc.setAttribute("login", login);
 				sc.setAttribute("password", password);
