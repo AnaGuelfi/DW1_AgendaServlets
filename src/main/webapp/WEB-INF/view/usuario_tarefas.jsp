@@ -52,5 +52,6 @@
 	</c:forEach>
 </table>
 </form>
+<p><a href="/AgendaServlet/LogoutServlet">LOGOUT</a></p>
 </body>
 </html>

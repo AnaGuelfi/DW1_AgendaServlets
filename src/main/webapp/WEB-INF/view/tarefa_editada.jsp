@@ -8,6 +8,6 @@
 <title>Tarefa</title>
 </head>
 <body>
-	<h1>Tarefa editada com sucesso! </h1>
+	<h1>Tarefa editada com sucesso! <a href="/AgendaServlet/UserTask">Voltar para tarefas cadastradas</a></h1>
 </body>
 </html>

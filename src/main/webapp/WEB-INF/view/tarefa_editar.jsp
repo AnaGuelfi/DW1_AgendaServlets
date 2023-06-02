@@ -33,5 +33,6 @@
 	</table>
 	<input type="submit" value="Enviar" />
 </form>
+<p><a href="/AgendaServlet/LogoutServlet">LOGOUT</a></p>
 </body>
 </html>
