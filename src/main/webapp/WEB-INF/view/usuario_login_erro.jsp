@@ -4,9 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>ERRO</title>
+<title>Erro ao autenticar-se</title>
+<style><%@include file="/WEB-INF/view/estilos.css"%></style>
 </head>
 <body>
-<h1>Falha no login! Tente novamente! <a href="/AgendaServlet/LoginServlet">Login</a></h1>
+<nav>
+    <ul class="menu">
+        <li class="borda_right">
+            <a href = "/AgendaServlet/LoginServlet">Login</a>
+        </li>
+    </ul>
+</nav>
+<h1>Falha no login! Tente novamente!</h1>
 </body>
 </html>

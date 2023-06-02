@@ -5,9 +5,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Tarefa</title>
+<title>Sucesso!</title>
+<style><%@include file="/WEB-INF/view/estilos.css"%></style>
 </head>
 <body>
-	<h1>Tarefa editada com sucesso! <a href="/AgendaServlet/UserTask">Voltar para tarefas cadastradas</a></h1>
+	<nav>
+        <ul class="menu">
+            <li class="borda_right">
+                <a href = "/AgendaServlet/TaskServlet">Cadastrar Nova Tarefa</a>
+            </li>
+            <li class="borda_right">
+                <a href = "/AgendaServlet/UserTask">Tarefas Cadastradas</a>
+            </li>
+            <li class="borda_right">
+                <a href="/AgendaServlet/LogoutServlet">Sair</a>
+            </li>
+        </ul>
+    </nav>
+	<h1>Tarefa editada com sucesso!</h1>
 </body>
 </html>

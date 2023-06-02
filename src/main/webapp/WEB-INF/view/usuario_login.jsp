@@ -10,6 +10,13 @@
 <style><%@include file="/WEB-INF/view/estilos.css"%></style>
 </head>
 <body>
+<nav>
+    <ul class="menu">
+        <li class="borda_right">
+            <a href = "/AgendaServlet/UserServlet">Cadastrar-se</a>
+        </li>
+    </ul>
+</nav>
 <fieldset>
 	<legend>Autenticar-se</legend>
 	<form action="<%=request.getContextPath()%>/login" method="post">

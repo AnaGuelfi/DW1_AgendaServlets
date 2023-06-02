@@ -18,13 +18,16 @@
                 <a href = "/AgendaServlet/TaskServlet">Cadastrar Nova Tarefa</a>
             </li>
             <li class="borda_right">
-                <a href="/AgendaServlet/LogoutServlet">LOGOUT</a>
+                <a href="/AgendaServlet/LogoutServlet">Sair</a>
             </li>
         </ul>
     </nav>
 </div>
 
-<div>
+<div class = "tabela">
+
+<h1>Tarefas</h1>
+
 <form action="<%=request.getContextPath()%>/UserTask" method="post">
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.Tarefa" %>

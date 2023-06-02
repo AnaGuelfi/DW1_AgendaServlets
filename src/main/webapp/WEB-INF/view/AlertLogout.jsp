@@ -4,9 +4,17 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>Alerta</title>
+<style><%@include file="/WEB-INF/view/estilos.css"%></style>
 </head>
 <body>
-	<h1>Você ainda não realizou login!<a href="/AgendaServlet/LoginServlet">Realizar login!</a></h1>
+	<nav>
+	    <ul class="menu">
+	        <li class="borda_right">
+	            <a href = "/AgendaServlet/LoginServlet">Login</a>
+	        </li>
+	    </ul>
+	</nav>
+	<h1>Você ainda não realizou login!</h1>
 </body>
 </html>

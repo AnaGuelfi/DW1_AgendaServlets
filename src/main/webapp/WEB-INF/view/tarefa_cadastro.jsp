@@ -6,33 +6,45 @@
 <head>
 <meta charset="UTF-8">
 <title>Cadastro de Tarefa</title>
+<style><%@include file="/WEB-INF/view/estilos.css"%></style>
 </head>
 <body>
-<form action="<%=request.getContextPath()%>/TaskServlet" method="post">
-	<table>
-		<tr>
-			<td>Título</td>
-			<td><input type="text" name="titulo" /></td>
-		</tr>
-		<tr>
-			<td>Descrição</td>
-			<td><input type="text" name="descricao" /></td>
-		</tr>
-		<tr>
-			<td>Data de Criação</td>
-			<td><input type="date" name="data_criacao" /></td>
-		</tr>
-		<tr>
-			<td>Data de Conclusão</td>
-			<td><input type="date" name="data_conclusao" /></td>
-		</tr>
-		<tr>
-			<td>Status</td>
-			<td><input type="text" name="status" /></td>
-		</tr>
-	</table>
-	<input type="submit" value="Enviar" />
-</form>
-<p><a href="/AgendaServlet/LogoutServlet">LOGOUT</a></p>
+
+<div>
+    <nav>
+        <ul class="menu">
+            <li class="borda_right">
+                <a href = "/AgendaServlet/UserTask">Tarefas Cadastradas</a>
+            </li>
+            <li class="borda_right">
+                <a href="/AgendaServlet/LogoutServlet">Sair</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+	<fieldset>
+		<legend>Cadastrar Tarefa</legend>
+		<form action="<%=request.getContextPath()%>/TaskServlet" method="post">
+			<p>
+				Título: <input type="text" name="titulo" />
+			</p>
+			<p>
+				Descrição: <input type="text" name="descricao" />
+			</p>
+			<p>
+				Data de Início: <input type="date" name="data_criacao" />
+			</p>
+			<p>
+				Data de Conclusão: <input type="date" name="data_conclusao" />
+			</p>
+			<p>
+				Status: <input type="text" name="status" />
+			</p>
+			<p>
+				<input class = "botao" type="submit" value="Enviar" />
+			</p>
+		</form>
+	</fieldset>
 </body>
 </html>

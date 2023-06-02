@@ -13,11 +13,14 @@ body{
     top: 0;
     font-weight: bold;
     font-family: "Segoe UI";
-    text-align: center;
+}
+
+h1{
+	text-align: center;
 }
   
 .menu li {
-    text-align: center;
+    float: left;
 }
 
 .menu li a {
@@ -40,15 +43,23 @@ fieldset{
     border: 2px solid #020024;
     font-size: 20px;
     border-radius: 10px;
-    background-color: #DCDCDC;
 }
 
 legend, .botao{
 	font-weight: bold;
 }
 
-table{
+.botao{
+	background-color: #DCDCDC;
+}
+
+.tabela, fieldset{
 	margin-top: 5%;
+}
+
+table{
+	border-collapse: collapse;
+	border-radius: 10px;
 }
 
 .botao_tabela {
@@ -63,14 +74,13 @@ table{
 }
 
 table, tr, td, th {
-	border: 2px collapse #020024;
+	border: 2px solid #020024; ;
 	margin: 0 auto;
 	width: 50%;
 	height: 50%;
 	text-align: center;
-	border-radius: 10px;
 }
 
 td, th {
-	padding: 10px;
+	padding: 15px;
 }

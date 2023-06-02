@@ -58,6 +58,7 @@ public class TarefaDAO {
 	}
 	
 	public void buscarTarefas(int user_id) throws ClassNotFoundException {
+		tarefasUsuario.clear();
 		String SELECT_USERS_SQL = "SELECT * FROM tarefas WHERE user_id = ?";
         
         Class.forName("com.mysql.jdbc.Driver");

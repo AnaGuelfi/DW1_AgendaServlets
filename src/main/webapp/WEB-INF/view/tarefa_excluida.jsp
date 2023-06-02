@@ -5,9 +5,23 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Tarefa</title>
+<title>Excluir Tarefa</title>
+<style><%@include file="/WEB-INF/view/estilos.css"%></style>
 </head>
 <body>
+	<nav>
+        <ul class="menu">
+            <li class="borda_right">
+                <a href = "/AgendaServlet/TaskServlet">Cadastrar Nova Tarefa</a>
+            </li>
+            <li class="borda_right">
+                <a href = "/AgendaServlet/UserTask">Tarefas Cadastradas</a>
+            </li>
+            <li class="borda_right">
+                <a href="/AgendaServlet/LogoutServlet">Sair</a>
+            </li>
+        </ul>
+    </nav>
 	<h1>Tarefa excluída com sucesso</h1>
 </body>
 </html>

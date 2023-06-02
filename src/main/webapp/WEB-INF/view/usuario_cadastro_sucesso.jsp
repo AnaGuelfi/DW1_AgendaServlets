@@ -6,8 +6,16 @@
 <head>
 <meta charset="UTF-8">
 <title>Registro confirmado</title>
+<style><%@include file="/WEB-INF/view/estilos.css"%></style>
 </head>
 <body>
-<h1>Usuário registrado com sucesso! <a href="/AgendaServlet/LoginServlet">Login</a></h1>
+<nav>
+    <ul class="menu">
+        <li class="borda_right">
+            <a href = "/AgendaServlet/LoginServlet">Login</a>
+        </li>
+    </ul>
+</nav>
+<h1>Usuário registrado com sucesso!</h1>
 </body>
 </html>
