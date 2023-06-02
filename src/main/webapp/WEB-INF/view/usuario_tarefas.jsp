@@ -6,10 +6,25 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Tarefas</title>
+<title>Tarefas Cadastradas</title>
+<style><%@include file="/WEB-INF/view/estilos.css"%></style>
 </head>
 <body>
-	<a href = "/AgendaServlet/TaskServlet">Cadastrar Nova Tarefa</a>
+
+<div>
+    <nav>
+        <ul class="menu">
+            <li class="borda_right">
+                <a href = "/AgendaServlet/TaskServlet">Cadastrar Nova Tarefa</a>
+            </li>
+            <li class="borda_right">
+                <a href="/AgendaServlet/LogoutServlet">LOGOUT</a>
+            </li>
+        </ul>
+    </nav>
+</div>
+
+<div>
 <form action="<%=request.getContextPath()%>/UserTask" method="post">
 <%@ page import="java.util.ArrayList" %>
 <%@ page import="model.Tarefa" %>
@@ -21,7 +36,8 @@
 		<th>Data de Criação</th>
 		<th>Data de Conclusão</th>
 		<th>Status</th>
-		<th>Ações</th>
+		<th>Alterar Tarefa</th>
+		<th>Excluir Tarefa</th>
 	</tr>
 	<c:forEach items="${requestScope.lista_tarefas}" var="c">
 		<tr>
@@ -44,14 +60,16 @@
 				${c.status}
 			</td>
 			<td>
+				<a class = "botao_tabela" href="/AgendaServlet/TaskEditServlet?id_tarefa=${c.id}">Editar</a>
+			</td>
+			<td>
 				<input type="hidden" name="id_excluir" value="${c.id}" />
-				<input type="submit" value="Excluir" />
-				<a href="/AgendaServlet/TaskEditServlet?id_tarefa=${c.id}">Editar Tarefa</a>
+				<input class = "botao_tabela" type="submit" value="Excluir" />
 			</td>
 		</tr>
 	</c:forEach>
 </table>
 </form>
-<p><a href="/AgendaServlet/LogoutServlet">LOGOUT</a></p>
+</div>
 </body>
 </html>

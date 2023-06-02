@@ -68,7 +68,7 @@ public class TarefaDAO {
         	PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USERS_SQL)){
         	preparedStatement.setInt(1, user_id);
         	System.out.println(preparedStatement);
-        	
+        	int flag = 0;
         	ResultSet rs = preparedStatement.executeQuery();
         	while(rs.next()) {
         		t = new Tarefa();
@@ -78,7 +78,14 @@ public class TarefaDAO {
         		t.setData_criacao(rs.getDate("data_criacao"));
         		t.setData_conclusao(rs.getDate("data_conclusao"));
         		t.setStatus(rs.getString("status"));
-        		tarefasUsuario.add(t);
+        		for(Tarefa tt : tarefasUsuario) {
+        			if(tt.getId() == t.getId()) {
+        				flag = 1;
+        			}
+        		}
+        		if(flag == 0) {
+        			tarefasUsuario.add(t);
+        		}
         	}
         }catch(SQLException ex) {
         	ex.printStackTrace();

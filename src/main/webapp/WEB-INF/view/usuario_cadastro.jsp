@@ -6,28 +6,28 @@
 <head>
 <meta charset="UTF-8">
 <title>Cadastro de Usuário</title>
+<style><%@include file="/WEB-INF/view/estilos.css"%></style>
 </head>
 <body>
-<form action="<%=request.getContextPath()%>/UserServlet" method="post">
-	<table>
-		<tr>
-			<td>Login</td>
-			<td><input type="text" name="login" /></td>
-		</tr>
-		<tr>
-			<td>Senha</td>
-			<td><input type="password" name="password" /></td>
-		</tr>
-		<tr>
-			<td>Nome</td>
-			<td><input type="text" name="nome" /></td>
-		</tr>
-		<tr>
-			<td>E-mail</td>
-			<td><input type="email" name="email" /></td>
-		</tr>
-	</table>
-	<input type="submit" value="Enviar" />
+<fieldset>
+	<legend>Cadastrar-se</legend>
+	<form action="<%=request.getContextPath()%>/UserServlet" method="post">
+	<p>
+		Username: <input type="text" name="login" />
+	</p>
+	<p>
+		Senha: <input type="password" name="password" />
+	</p>
+	<p>
+		Nome: <input type="text" name="nome" />
+	</p>
+	<p>
+		E-mail: <input type="email" name="email" />
+	</p>
+	<p>
+		<input class = "botao" type="submit" value="Enviar" />
+	</p>
 </form>
+</fieldset>
 </body>
 </html>

@@ -1,25 +1,29 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="jakarta.servlet.http.HttpSession" %>
 <!DOCTYPE html>
 <html>
 <head>
 <meta charset="UTF-8">
 <title>Login de Usuário</title>
+<style><%@include file="/WEB-INF/view/estilos.css"%></style>
 </head>
 <body>
-<form action="<%=request.getContextPath()%>/login" method="post">
-<table>
-	<tr>
-		<td>Login</td>
-		<td><input type="text" name="login" /></td>
-	</tr>
-	<tr>
-		<td>Senha</td>
-		<td><input type="password" name="password" /></td>
-	</tr>
-</table>
-<input type="submit" value="Enviar" />
-</form>
+<fieldset>
+	<legend>Autenticar-se</legend>
+	<form action="<%=request.getContextPath()%>/login" method="post">
+	<p>
+		Username: <input type="text" name="login" />
+	</p>
+	<p>
+		Senha: <input type="password" name="password" />
+	</p>
+	<p>
+		<input class = "botao" type="submit" value="Enviar" />
+	</p>
+	</form>
+</fieldset>
+
 </body>
 </html>

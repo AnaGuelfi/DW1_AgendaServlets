@@ -1,0 +1,76 @@
+@charset "UTF-8";
+
+body{
+	font-family: "Times New Roman";
+}
+
+.menu{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    overflow: hidden;
+    background-color: #020024;
+    top: 0;
+    font-weight: bold;
+    font-family: "Segoe UI";
+    text-align: center;
+}
+  
+.menu li {
+    text-align: center;
+}
+
+.menu li a {
+    display: block;
+    text-align: center;
+    padding: 14px 16px;
+    color:white;
+    text-decoration: none;
+}
+
+fieldset{
+	font-size: 24px;
+	margin: 0 auto;
+	width: 40%;
+	text-align: center;
+}
+
+.botao, fieldset{
+	padding: 10px 24px;
+    border: 2px solid #020024;
+    font-size: 20px;
+    border-radius: 10px;
+    background-color: #DCDCDC;
+}
+
+legend, .botao{
+	font-weight: bold;
+}
+
+table{
+	margin-top: 5%;
+}
+
+.botao_tabela {
+	padding: 5px 12px;
+    border: 2px solid #020024;
+    font-size: 15px;
+    border-radius: 10px;
+    font-weight: bold;
+    text-decoration: none;
+    color: black;
+    background-color: #DCDCDC;
+}
+
+table, tr, td, th {
+	border: 2px collapse #020024;
+	margin: 0 auto;
+	width: 50%;
+	height: 50%;
+	text-align: center;
+	border-radius: 10px;
+}
+
+td, th {
+	padding: 10px;
+}
