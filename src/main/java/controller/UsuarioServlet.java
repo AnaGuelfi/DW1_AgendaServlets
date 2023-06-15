@@ -9,6 +9,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
 import dao.UsuarioDAO;
+import model.Criptografia;
 import model.Usuario;
 
 /**
@@ -40,16 +41,11 @@ public class UsuarioServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String login = request.getParameter("login");
-		String password = request.getParameter("password");
+		String password = Criptografia.criptografar(request.getParameter("password"));
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("email");
 		
-		Usuario u = new Usuario();
-		
-		u.setLogin(login);
-		u.setSenha(password);
-		u.setNome(nome);
-		u.setEmail(email);
+		Usuario u = new Usuario(login, password, nome, email);
 		
 		try {
 			udao.cadastrarUsuario(u);

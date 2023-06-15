@@ -5,7 +5,7 @@ use agenda;
 create table if not exists usuarios(
 	id int not null auto_increment,
     login varchar(30) not null,
-    password varchar(30) not null,
+    password varchar(300) not null,
     nome varchar(30) not null,
     email varchar(30) not null,
     primary key(id)

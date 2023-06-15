@@ -7,6 +7,21 @@ public class Usuario {
 	private String nome;
 	private String email;
 	
+	public Usuario(int id, String login, String senha, String nome, String email) {
+		this.id = id;
+		this.login = login;
+		this.senha = senha;
+		this.nome = nome;
+		this.email = email;
+	}
+	
+	public Usuario(String login, String senha, String nome, String email) {
+		this.login = login;
+		this.senha = senha;
+		this.nome = nome;
+		this.email = email;
+	}
+	
 	public int getId() {
 		return id;
 	}

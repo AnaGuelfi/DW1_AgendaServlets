@@ -31,10 +31,13 @@ public class UsuarioDAO {
         	preparedStatement.setString(2, u.getSenha());
         	preparedStatement.setString(3, u.getNome());
         	preparedStatement.setString(4, u.getEmail());
+        	System.out.println("Senha, UsuarioDAO.cadastrarUsuario: " + u.getSenha());
         	System.out.println(preparedStatement);
         	
         	result = preparedStatement.executeUpdate();
+        	
         	ResultSet rs = preparedStatement.getGeneratedKeys();
+ 
         	if (rs.next()) {
         	    u.setId(rs.getInt(1));
         	}
@@ -57,16 +60,13 @@ public class UsuarioDAO {
         	PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USERS_SQL)){
         	preparedStatement.setString(1, login);
         	preparedStatement.setString(2, password);
+        	System.out.println("Senha, UsuarioDAO.buscarUsuario: " + password);
         	System.out.println(preparedStatement);
         	
         	ResultSet rs = preparedStatement.executeQuery();
         	if(rs.next()) {
-        		u = new Usuario();
-        		u.setId(rs.getInt("id"));
-        		u.setLogin(rs.getString("login"));
-        		u.setSenha(rs.getString("password"));
-        		u.setNome(rs.getString("nome"));
-        		u.setEmail(rs.getString("email"));
+        		u = new Usuario(rs.getInt("id"), rs.getString("login"), rs.getString("password"), rs.getString("nome"), rs.getString("email"));
+        		System.out.println("Senha, UsuarioDAO.buscarUsuario - ResultSet: " + rs.getString("password"));
         	}
         }catch(SQLException ex) {
         	ex.printStackTrace();

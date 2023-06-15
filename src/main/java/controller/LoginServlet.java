@@ -7,6 +7,7 @@ import jakarta.servlet.annotation.WebServlet;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.Criptografia;
 import model.Usuario;
 
 import java.io.IOException;
@@ -44,8 +45,8 @@ public class LoginServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String login = request.getParameter("login");
-		String password = request.getParameter("password");
-		
+		//String password = request.getParameter("password");
+		String password = Criptografia.criptografar(request.getParameter("password"));
 		try {
 			Usuario u = udao.buscarUsuario(login, password);
 			if(u != null) {
