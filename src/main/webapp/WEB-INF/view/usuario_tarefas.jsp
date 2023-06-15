@@ -26,7 +26,21 @@
 
 <div class = "tabela">
 
+<fieldset>
+	<legend>Pesquisar Tarefa</legend>
+	<form action="<%=request.getContextPath()%>/UserTask" method="post">
+		<p>
+			Título: <input type="text" name="titulo" />
+		</p>
+		<p>
+			<input name = "buscar" class = "botao" type="submit" value="Buscar Tarefa" />
+		</p>
+	</form>
+</fieldset>
+
 <h1>Tarefas</h1>
+
+<br  /><br  />
 
 <form action="<%=request.getContextPath()%>/UserTask" method="post">
 <%@ page import="java.util.ArrayList" %>

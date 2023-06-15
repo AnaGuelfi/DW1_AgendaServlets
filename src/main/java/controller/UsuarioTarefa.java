@@ -58,12 +58,30 @@ public class UsuarioTarefa extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String usuario = (String) request.getSession().getAttribute("usuario");
 		if(usuario != null) {
-			int id_tarefa = Integer.parseInt(request.getParameter("id_excluir"));
+			int flag = -1;
+			int id_tarefa = flag;
+			ServletContext sc = getServletContext();
+			Usuario u = (Usuario) sc.getAttribute("usuario");
+			
+			if(request.getParameter("id_excluir") != null) {
+				id_tarefa = Integer.parseInt(request.getParameter("id_excluir"));
+			}
+			
+			String tituloBuscar = (String) request.getParameter("titulo");
 			
 			try {
-				tdao.excluirTarefa(id_tarefa);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/tarefa_excluida.jsp");
-				dispatcher.forward(request, response);
+				if(id_tarefa != flag) {
+					tdao.excluirTarefa(id_tarefa);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/tarefa_excluida.jsp");
+					dispatcher.forward(request, response);
+				}
+				
+				if(!tituloBuscar.isEmpty()) {
+					request.setAttribute("lista_tarefas", tdao.pesquisarTarefa(tituloBuscar, u.getId()));
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_tarefas.jsp");
+					dispatcher.forward(request, response);
+				}
+				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

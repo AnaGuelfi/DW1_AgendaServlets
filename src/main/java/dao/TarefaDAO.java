@@ -122,6 +122,45 @@ public class TarefaDAO {
         return t;
 	}
 	
+	public ArrayList<Tarefa> pesquisarTarefa(String titulo, int user_id) throws ClassNotFoundException {
+		ArrayList<Tarefa> tarefasEncontradas = new ArrayList<Tarefa>();
+		String SELECT_USERS_SQL = "SELECT * FROM tarefas WHERE user_id = ? AND lower(titulo) like lower(concat(?, '%'))";
+        
+        Class.forName("com.mysql.jdbc.Driver");
+        
+        Tarefa t = null;
+        
+        try (Connection connection = DriverManager.getConnection(url,usernameb,passwordb);
+        	PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USERS_SQL)){
+        	preparedStatement.setInt(1, user_id);
+        	preparedStatement.setString(2, titulo);
+        	System.out.println(preparedStatement);
+        	int flag = 0;
+        	
+        	ResultSet rs = preparedStatement.executeQuery();
+        	while(rs.next()) {
+        		t = new Tarefa();
+        		t.setId(rs.getInt("id"));
+        		t.setTitulo(rs.getString("titulo"));
+        		t.setDescricao(rs.getString("descricao"));
+        		t.setData_criacao(rs.getDate("data_criacao"));
+        		t.setData_conclusao(rs.getDate("data_conclusao"));
+        		t.setStatus(rs.getString("status"));
+        		for(Tarefa tt : tarefasUsuario) {
+        			if(tt.getId() == t.getId()) {
+        				flag = 1;
+        			}
+        		}
+        		if(flag == 0) {
+        			tarefasEncontradas.add(t);
+        		}
+        	}
+        }catch(SQLException ex) {
+        	ex.printStackTrace();
+        }
+        return tarefasEncontradas;
+	}
+	
 	public void alterarTarefa(Tarefa t) throws ClassNotFoundException {
 		 String UPDATE_SQL = "UPDATE tarefas SET titulo = ?, descricao = ?, data_criacao = ?, data_conclusao = ?, status = ? WHERE id = ?";
 	        
