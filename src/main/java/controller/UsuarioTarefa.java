@@ -10,6 +10,7 @@ import jakarta.servlet.http.HttpServletResponse;
 import model.Usuario;
 
 import java.io.IOException;
+import java.text.ParseException;
 
 import dao.TarefaDAO;
 
@@ -68,6 +69,11 @@ public class UsuarioTarefa extends HttpServlet {
 			}
 			
 			String tituloBuscar = (String) request.getParameter("titulo");
+			String data_criacao = request.getParameter("data_criacao");
+			String data_conclusao = request.getParameter("data_conclusao");
+			java.text.DateFormat fmt = new java.text.SimpleDateFormat("yyyy-MM-dd");
+			java.sql.Date data_criacaoSQL;
+			java.sql.Date data_conclusaoSQL;
 			
 			try {
 				if(id_tarefa != flag) {
@@ -76,11 +82,70 @@ public class UsuarioTarefa extends HttpServlet {
 					dispatcher.forward(request, response);
 				}
 				
-				if(!tituloBuscar.isEmpty()) {
+				if(tituloBuscar.equals("") && data_criacao.equals("") && data_conclusao.equals("")) {
+					try {
+						tdao.buscarTarefas(u.getId());
+					} catch (ClassNotFoundException e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+					request.setAttribute("lista_tarefas", tdao.getTarefasUsuario());
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_tarefas.jsp");
+					dispatcher.forward(request, response);
+				} else if(!tituloBuscar.isEmpty() && !data_criacao.isEmpty() && !data_conclusao.isEmpty()) {
+					try {
+						data_criacaoSQL = new java.sql.Date(fmt.parse(data_criacao).getTime());
+						data_conclusaoSQL = new java.sql.Date(fmt.parse(data_conclusao).getTime());
+						request.setAttribute("lista_tarefas", tdao.pesquisarTarefa(tituloBuscar, data_criacaoSQL, data_conclusaoSQL, u.getId()));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_tarefas.jsp");
+					dispatcher.forward(request, response);
+				} else if (!tituloBuscar.isEmpty() && !data_criacao.isEmpty()){
+					try {
+						data_criacaoSQL = new java.sql.Date(fmt.parse(data_criacao).getTime());
+						request.setAttribute("lista_tarefas", tdao.pesquisarTarefa(tituloBuscar, data_criacaoSQL, u.getId()));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_tarefas.jsp");
+					dispatcher.forward(request, response);
+				} else if (!data_conclusao.isEmpty() && !data_criacao.isEmpty()) {
+					try {
+						data_criacaoSQL = new java.sql.Date(fmt.parse(data_criacao).getTime());
+						data_conclusaoSQL = new java.sql.Date(fmt.parse(data_conclusao).getTime());
+						request.setAttribute("lista_tarefas", tdao.pesquisarTarefa(data_criacaoSQL, data_conclusaoSQL, u.getId()));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_tarefas.jsp");
+					dispatcher.forward(request, response);
+				} else if(!tituloBuscar.isEmpty()) {
 					request.setAttribute("lista_tarefas", tdao.pesquisarTarefa(tituloBuscar, u.getId()));
 					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_tarefas.jsp");
 					dispatcher.forward(request, response);
+				} else if (!data_criacao.isEmpty()) {
+					try {
+						data_criacaoSQL = new java.sql.Date(fmt.parse(data_criacao).getTime());
+						request.setAttribute("lista_tarefas", tdao.pesquisarTarefa(data_criacaoSQL, "criacao", u.getId()));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_tarefas.jsp");
+					dispatcher.forward(request, response);
+				} else if (!data_conclusao.isEmpty()) {
+					try {
+						data_conclusaoSQL = new java.sql.Date(fmt.parse(data_conclusao).getTime());
+						request.setAttribute("lista_tarefas", tdao.pesquisarTarefa(data_conclusaoSQL, "conclusao", u.getId()));
+					} catch (ParseException e) {
+						e.printStackTrace();
+					}
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_tarefas.jsp");
+					dispatcher.forward(request, response);
+					
 				}
+				
 				
 			} catch (ClassNotFoundException e) {
 				// TODO Auto-generated catch block

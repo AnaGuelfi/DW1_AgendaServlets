@@ -124,7 +124,7 @@ public class TarefaDAO {
 	
 	public ArrayList<Tarefa> pesquisarTarefa(String titulo, int user_id) throws ClassNotFoundException {
 		ArrayList<Tarefa> tarefasEncontradas = new ArrayList<Tarefa>();
-		String SELECT_USERS_SQL = "SELECT * FROM tarefas WHERE user_id = ? AND lower(titulo) like lower(concat(?, '%'))";
+		String SELECT_USERS_SQL = "SELECT * FROM tarefas WHERE user_id = ? AND lower(titulo) like lower(concat(?, '%')) order by titulo;";
         
         Class.forName("com.mysql.jdbc.Driver");
         
@@ -134,6 +134,171 @@ public class TarefaDAO {
         	PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USERS_SQL)){
         	preparedStatement.setInt(1, user_id);
         	preparedStatement.setString(2, titulo);
+        	System.out.println(preparedStatement);
+        	int flag = 0;
+        	
+        	ResultSet rs = preparedStatement.executeQuery();
+        	while(rs.next()) {
+        		t = new Tarefa();
+        		t.setId(rs.getInt("id"));
+        		t.setTitulo(rs.getString("titulo"));
+        		t.setDescricao(rs.getString("descricao"));
+        		t.setData_criacao(rs.getDate("data_criacao"));
+        		t.setData_conclusao(rs.getDate("data_conclusao"));
+        		t.setStatus(rs.getString("status"));
+        		for(Tarefa tt : tarefasUsuario) {
+        			if(tt.getId() == t.getId()) {
+        				flag = 1;
+        			}
+        		}
+        		if(flag == 0) {
+        			tarefasEncontradas.add(t);
+        		}
+        	}
+        }catch(SQLException ex) {
+        	ex.printStackTrace();
+        }
+        return tarefasEncontradas;
+	}
+	
+	public ArrayList<Tarefa> pesquisarTarefa(String titulo, java.sql.Date dataCriacao, int user_id) throws ClassNotFoundException {
+		ArrayList<Tarefa> tarefasEncontradas = new ArrayList<Tarefa>();
+		String SELECT_USERS_SQL = "SELECT * FROM tarefas WHERE user_id = ? AND lower(titulo) like lower(concat(?, '%')) AND data_criacao >= ? order by data_criacao;";
+        
+        Class.forName("com.mysql.jdbc.Driver");
+        
+        Tarefa t = null;
+        
+        try (Connection connection = DriverManager.getConnection(url,usernameb,passwordb);
+        	PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USERS_SQL)){
+        	preparedStatement.setInt(1, user_id);
+        	preparedStatement.setString(2, titulo);
+        	preparedStatement.setDate(3, dataCriacao);
+        	System.out.println(preparedStatement);
+        	int flag = 0;
+        	
+        	ResultSet rs = preparedStatement.executeQuery();
+        	while(rs.next()) {
+        		t = new Tarefa();
+        		t.setId(rs.getInt("id"));
+        		t.setTitulo(rs.getString("titulo"));
+        		t.setDescricao(rs.getString("descricao"));
+        		t.setData_criacao(rs.getDate("data_criacao"));
+        		t.setData_conclusao(rs.getDate("data_conclusao"));
+        		t.setStatus(rs.getString("status"));
+        		for(Tarefa tt : tarefasUsuario) {
+        			if(tt.getId() == t.getId()) {
+        				flag = 1;
+        			}
+        		}
+        		if(flag == 0) {
+        			tarefasEncontradas.add(t);
+        		}
+        	}
+        }catch(SQLException ex) {
+        	ex.printStackTrace();
+        }
+        return tarefasEncontradas;
+	}
+	
+	public ArrayList<Tarefa> pesquisarTarefa(String titulo, java.sql.Date dataCriacao, java.sql.Date dataConclusao, int user_id) throws ClassNotFoundException {
+		ArrayList<Tarefa> tarefasEncontradas = new ArrayList<Tarefa>();
+		String SELECT_USERS_SQL = "SELECT * FROM tarefas WHERE user_id = ? AND lower(titulo) like lower(concat(?, '%')) AND data_criacao >= ? AND data_conclusao >= ? order by data_criacao, data_conclusao";
+        
+        Class.forName("com.mysql.jdbc.Driver");
+        
+        Tarefa t = null;
+        
+        try (Connection connection = DriverManager.getConnection(url,usernameb,passwordb);
+        	PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USERS_SQL)){
+        	preparedStatement.setInt(1, user_id);
+        	preparedStatement.setString(2, titulo);
+        	preparedStatement.setDate(3, dataCriacao);
+        	preparedStatement.setDate(4, dataConclusao);
+        	System.out.println(preparedStatement);
+        	int flag = 0;
+        	
+        	ResultSet rs = preparedStatement.executeQuery();
+        	while(rs.next()) {
+        		t = new Tarefa();
+        		t.setId(rs.getInt("id"));
+        		t.setTitulo(rs.getString("titulo"));
+        		t.setDescricao(rs.getString("descricao"));
+        		t.setData_criacao(rs.getDate("data_criacao"));
+        		t.setData_conclusao(rs.getDate("data_conclusao"));
+        		t.setStatus(rs.getString("status"));
+        		for(Tarefa tt : tarefasUsuario) {
+        			if(tt.getId() == t.getId()) {
+        				flag = 1;
+        			}
+        		}
+        		if(flag == 0) {
+        			tarefasEncontradas.add(t);
+        		}
+        	}
+        }catch(SQLException ex) {
+        	ex.printStackTrace();
+        }
+        return tarefasEncontradas;
+	}
+	
+	public ArrayList<Tarefa> pesquisarTarefa(java.sql.Date dataCriacao, java.sql.Date dataConclusao, int user_id) throws ClassNotFoundException {
+		ArrayList<Tarefa> tarefasEncontradas = new ArrayList<Tarefa>();
+		String SELECT_USERS_SQL = "SELECT * FROM tarefas WHERE user_id = ? AND data_criacao >= ? AND data_conclusao >= ? order by data_criacao, data_conclusao";
+        
+        Class.forName("com.mysql.jdbc.Driver");
+        
+        Tarefa t = null;
+        
+        try (Connection connection = DriverManager.getConnection(url,usernameb,passwordb);
+        	PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USERS_SQL)){
+        	preparedStatement.setInt(1, user_id);
+        	preparedStatement.setDate(2, dataCriacao);
+        	preparedStatement.setDate(3, dataConclusao);
+        	System.out.println(preparedStatement);
+        	int flag = 0;
+        	
+        	ResultSet rs = preparedStatement.executeQuery();
+        	while(rs.next()) {
+        		t = new Tarefa();
+        		t.setId(rs.getInt("id"));
+        		t.setTitulo(rs.getString("titulo"));
+        		t.setDescricao(rs.getString("descricao"));
+        		t.setData_criacao(rs.getDate("data_criacao"));
+        		t.setData_conclusao(rs.getDate("data_conclusao"));
+        		t.setStatus(rs.getString("status"));
+        		for(Tarefa tt : tarefasUsuario) {
+        			if(tt.getId() == t.getId()) {
+        				flag = 1;
+        			}
+        		}
+        		if(flag == 0) {
+        			tarefasEncontradas.add(t);
+        		}
+        	}
+        }catch(SQLException ex) {
+        	ex.printStackTrace();
+        }
+        return tarefasEncontradas;
+	}
+	
+	public ArrayList<Tarefa> pesquisarTarefa(java.sql.Date data, String tipo, int user_id) throws ClassNotFoundException {
+		ArrayList<Tarefa> tarefasEncontradas = new ArrayList<Tarefa>();
+		String SELECT_USERS_SQL = null;
+		if(tipo.equals("criacao")) {
+			SELECT_USERS_SQL = "SELECT * FROM tarefas WHERE user_id = ? AND data_criacao >= ? order by data_criacao, data_conclusao";
+		} else if (tipo.equals("conclusao")) {
+			SELECT_USERS_SQL = "SELECT * FROM tarefas WHERE user_id = ? AND data_conclusao >= ? order by data_criacao, data_conclusao";
+		}
+        
+        Class.forName("com.mysql.jdbc.Driver");
+        
+        Tarefa t = null;
+        
+        try (Connection connection = DriverManager.getConnection(url,usernameb,passwordb);
+        	PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USERS_SQL)){
+        	preparedStatement.setInt(1, user_id);
+        	preparedStatement.setDate(2, data);
         	System.out.println(preparedStatement);
         	int flag = 0;
         	

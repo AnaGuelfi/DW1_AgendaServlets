@@ -51,6 +51,7 @@ legend, .botao{
 
 .botao{
 	background-color: #DCDCDC;
+	font-family: "Times New Roman";
 }
 
 .tabela, fieldset{
@@ -71,16 +72,17 @@ table{
     text-decoration: none;
     color: black;
     background-color: #DCDCDC;
+    font-family: "Times New Roman";
 }
 
 table, tr, td, th {
 	border: 2px solid #020024; ;
 	margin: 0 auto;
-	width: 50%;
-	height: 50%;
+	width: 60%;
+	height: 60%;
 	text-align: center;
 }
 
 td, th {
-	padding: 15px;
+	padding: 30px;
 }

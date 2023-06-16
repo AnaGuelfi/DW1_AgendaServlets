@@ -33,6 +33,12 @@
 			Título: <input type="text" name="titulo" />
 		</p>
 		<p>
+			Inicia-se a partir de: <input type="date" name="data_criacao" />
+		</p>
+		<p>
+			Conclui-se a partir de: <input type="date" name="data_conclusao" />
+		</p>
+		<p>
 			<input name = "buscar" class = "botao" type="submit" value="Buscar Tarefa" />
 		</p>
 	</form>
@@ -47,10 +53,9 @@
 <%@ page import="model.Tarefa" %>
 <table>
 	<tr>
-		<th>ID</th>
 		<th>Título</th>
 		<th>Descrição</th>
-		<th>Data de Criação</th>
+		<th>Data de Início</th>
 		<th>Data de Conclusão</th>
 		<th>Status</th>
 		<th>Alterar Tarefa</th>
@@ -58,9 +63,6 @@
 	</tr>
 	<c:forEach items="${requestScope.lista_tarefas}" var="c">
 		<tr>
-			<td>
-				${c.id}
-			</td>
 			<td>
 				${c.titulo}
 			</td>
