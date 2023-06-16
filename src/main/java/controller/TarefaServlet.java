@@ -55,47 +55,54 @@ public class TarefaServlet extends HttpServlet {
 			String data_criacao = request.getParameter("data_criacao");
 			String data_conclusao = request.getParameter("data_conclusao");
 			String status = request.getParameter("status");
-			
-			Tarefa t = new Tarefa();
-			t.setTitulo(titulo);
-			t.setDescricao(descricao);
-			t.setStatus(status);
-			
-			ServletContext sc = getServletContext();
-			Usuario u = (Usuario) sc.getAttribute("usuario");
-			t.setU(u);
-			
-			java.text.DateFormat fmt = new java.text.SimpleDateFormat("yyyy-MM-dd");
-			java.sql.Date data_criacaoSQL;
-			try {
-				data_criacaoSQL = new java.sql.Date(fmt.parse(data_criacao).getTime());
-				t.setData_criacao(data_criacaoSQL);
-			} catch (ParseException e) {
-				e.printStackTrace();
+			if((titulo.isEmpty() || titulo.equals("") || titulo.equals(" ") || titulo.isBlank())){
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/tarefa_cadastro_falha_titulo.jsp");
+				dispatcher.forward(request, response);
+			} else if ((data_conclusao.isEmpty() || data_conclusao.equals("") || data_conclusao.equals(" ") || data_conclusao.isBlank())) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/tarefa_cadastro_falha_data.jsp");
+				dispatcher.forward(request, response);
+			} else {
+				Tarefa t = new Tarefa();
+				t.setTitulo(titulo);
+				t.setDescricao(descricao);
+				t.setStatus(status);
+				
+				ServletContext sc = getServletContext();
+				Usuario u = (Usuario) sc.getAttribute("usuario");
+				t.setU(u);
+				
+				java.text.DateFormat fmt = new java.text.SimpleDateFormat("yyyy-MM-dd");
+				java.sql.Date data_criacaoSQL;
+				try {
+					data_criacaoSQL = new java.sql.Date(fmt.parse(data_criacao).getTime());
+					t.setData_criacao(data_criacaoSQL);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				java.sql.Date data_conclusaoSQL;
+				try {
+					data_conclusaoSQL = new java.sql.Date(fmt.parse(data_conclusao).getTime());
+					t.setData_conclusao(data_conclusaoSQL);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				
+				try {
+					tdao.cadastrarTarefa(t);
+				}catch(ClassNotFoundException e) {
+					e.printStackTrace();
+				}
+				
+				try {
+					tdao.buscarTarefas(u.getId());
+				} catch (ClassNotFoundException e) {
+					// TODO Auto-generated catch block
+					e.printStackTrace();
+				}
+				request.setAttribute("lista_tarefas", tdao.getTarefasUsuario());
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_tarefas.jsp");
+				dispatcher.forward(request, response);
 			}
-			java.sql.Date data_conclusaoSQL;
-			try {
-				data_conclusaoSQL = new java.sql.Date(fmt.parse(data_conclusao).getTime());
-				t.setData_conclusao(data_conclusaoSQL);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			
-			try {
-				tdao.cadastrarTarefa(t);
-			}catch(ClassNotFoundException e) {
-				e.printStackTrace();
-			}
-			
-			try {
-				tdao.buscarTarefas(u.getId());
-			} catch (ClassNotFoundException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			request.setAttribute("lista_tarefas", tdao.getTarefasUsuario());
-			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_tarefas.jsp");
-			dispatcher.forward(request, response);
 		}else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_login.jsp");
 			dispatcher.forward(request, response);

@@ -67,44 +67,53 @@ public class TarefaEditarServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String usuario = (String) request.getSession().getAttribute("usuario");
-		if(usuario != null) {
-			Tarefa t = new Tarefa();
-			
+		if(usuario != null) {			
 			String titulo = request.getParameter("titulo");
-			t.setTitulo(titulo);
 			String descricao = request.getParameter("descricao");
-			t.setDescricao(descricao);
 			String data_criacao = request.getParameter("data_criacao");
 			String data_conclusao = request.getParameter("data_conclusao");
 			String status = request.getParameter("status");
-			t.setStatus(status);
 			
-			java.text.DateFormat fmt = new java.text.SimpleDateFormat("yyyy-MM-dd");
-			java.sql.Date data_criacaoSQL;
-			try {
-				data_criacaoSQL = new java.sql.Date(fmt.parse(data_criacao).getTime());
-				t.setData_criacao(data_criacaoSQL);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			java.sql.Date data_conclusaoSQL;
-			try {
-				data_conclusaoSQL = new java.sql.Date(fmt.parse(data_conclusao).getTime());
-				t.setData_conclusao(data_conclusaoSQL);
-			} catch (ParseException e) {
-				e.printStackTrace();
-			}
-			
-			ServletContext sc = getServletContext();
-			int id_tarefa = (int) sc.getAttribute("id_tarefa");
-			t.setId(id_tarefa);
-			
-			try {
-				tdao.alterarTarefa(t);
-				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/tarefa_editada.jsp");
+			if((titulo.isEmpty() || titulo.equals("") || titulo.equals(" ") || titulo.isBlank())){
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/tarefa_cadastro_falha_titulo.jsp");
 				dispatcher.forward(request, response);
-			}catch(ClassNotFoundException e) {
-				e.printStackTrace();
+			} else if ((data_conclusao.isEmpty() || data_conclusao.equals("") || data_conclusao.equals(" ") || data_conclusao.isBlank())) {
+				RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/tarefa_cadastro_falha_data.jsp");
+				dispatcher.forward(request, response);
+			} else {
+				Tarefa t = new Tarefa();
+				
+				t.setTitulo(titulo);
+				t.setDescricao(descricao);
+				t.setStatus(status);
+				
+				java.text.DateFormat fmt = new java.text.SimpleDateFormat("yyyy-MM-dd");
+				java.sql.Date data_criacaoSQL;
+				try {
+					data_criacaoSQL = new java.sql.Date(fmt.parse(data_criacao).getTime());
+					t.setData_criacao(data_criacaoSQL);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				java.sql.Date data_conclusaoSQL;
+				try {
+					data_conclusaoSQL = new java.sql.Date(fmt.parse(data_conclusao).getTime());
+					t.setData_conclusao(data_conclusaoSQL);
+				} catch (ParseException e) {
+					e.printStackTrace();
+				}
+				
+				ServletContext sc = getServletContext();
+				int id_tarefa = (int) sc.getAttribute("id_tarefa");
+				t.setId(id_tarefa);
+				
+				try {
+					tdao.alterarTarefa(t);
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/tarefa_editada.jsp");
+					dispatcher.forward(request, response);
+				}catch(ClassNotFoundException e) {
+					e.printStackTrace();
+				}
 			}
 		}else {
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_login.jsp");

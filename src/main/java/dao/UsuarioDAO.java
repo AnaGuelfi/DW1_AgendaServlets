@@ -49,6 +49,27 @@ public class UsuarioDAO {
         return result;
 	}
 	
+	public boolean verificarLogin(String login) throws ClassNotFoundException {
+		String SELECT_USERS_SQL = "SELECT id, login, password, nome, email FROM usuarios WHERE login like ?;";
+        
+        Class.forName("com.mysql.jdbc.Driver");
+        
+        try (Connection connection = DriverManager.getConnection(url,usernameb,passwordb);
+        	PreparedStatement preparedStatement = connection.prepareStatement(SELECT_USERS_SQL)){
+        	preparedStatement.setString(1, login);
+        	System.out.println(preparedStatement);
+        	
+        	ResultSet rs = preparedStatement.executeQuery();
+        	if(rs.next()) {
+        		return true;
+        	}
+        }catch(SQLException ex) {
+        	ex.printStackTrace();
+        }
+        
+        return false;
+	}
+	
 	public Usuario buscarUsuario(String login, String password) throws ClassNotFoundException {
 		String SELECT_USERS_SQL = "SELECT id, login, password, nome, email FROM usuarios WHERE login like ? and password like ?";
         

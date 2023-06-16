@@ -41,21 +41,46 @@ public class UsuarioServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String login = request.getParameter("login");
-		String password = Criptografia.criptografar(request.getParameter("password"));
+		String password = request.getParameter("password");
 		String nome = request.getParameter("nome");
 		String email = request.getParameter("email");
 		
-		Usuario u = new Usuario(login, password, nome, email);
-		
-		try {
-			udao.cadastrarUsuario(u);
-		}catch(ClassNotFoundException e) {
-			e.printStackTrace();
+		if((nome.isEmpty() || nome.equals("") || nome.equals(" ") || nome.isBlank())){
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_cadastro_falha_nome.jsp");
+			dispatcher.forward(request, response);
+		} else if((login.isEmpty() || login.equals("") || login.equals(" ") || login.isBlank())) {
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_cadastro_falha_login.jsp");
+			dispatcher.forward(request, response);
+		} else if((password.isEmpty() || password.equals("") || password.equals(" ") || password.isBlank())){
+			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_cadastro_falha_senha.jsp");
+			dispatcher.forward(request, response);
+		} else {
+			password = Criptografia.criptografar(password);
+			Usuario u = null;
+			
+			try {
+				if(udao.verificarLogin(login)) {
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_cadastro_login_existente.jsp");
+					dispatcher.forward(request, response);
+				} else {
+					u = new Usuario(login, password, nome, email);
+					try {
+						udao.cadastrarUsuario(u);
+					}catch(ClassNotFoundException e) {
+						e.printStackTrace();
+					}
+					
+					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_cadastro_sucesso.jsp");
+					dispatcher.forward(request, response);
+				}
+			} catch (ClassNotFoundException e) {
+				e.printStackTrace();
+			} catch (ServletException e) {
+				e.printStackTrace();
+			} catch (IOException e) {
+				e.printStackTrace();
+			}
 		}
-		
-		RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_cadastro_sucesso.jsp");
-		dispatcher.forward(request, response);
-		
 	}
 
 }
