@@ -38,8 +38,19 @@
 				Data de Conclusão: <input type="date" name="data_conclusao" required="required" />
 			</p>
 			<p>
+				Status:
+				<select name = "status">
+					<option value="nao_iniciada">Não Iniciada</option>
+					<option value="em_andamento">Em Andamento</option>
+					<option value="concluida">Concluída</option>
+				</select>
+			</p>
+			<!--  
+			<p>
 				Status: <input type="text" name="status" />
 			</p>
+			-->
+			
 			<p>
 				<input class = "botao" type="submit" value="Enviar" />
 			</p>

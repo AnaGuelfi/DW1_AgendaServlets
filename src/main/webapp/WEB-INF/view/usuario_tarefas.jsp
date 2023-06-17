@@ -76,8 +76,17 @@
 				${c.data_conclusao}
 			</td>
 			<td>
+				<c:choose>
+				   <c:when test="${c.status=='nao_iniciada'}">Não Iniciada</c:when> 
+				   <c:when test="${c.status=='em_andamento'}">Em Andamento</c:when> 
+				   <c:when test="${c.status=='concluida'}">Concluída</c:when>
+				</c:choose>
+			</td>
+			<!--
+			<td>
 				${c.status}
 			</td>
+			-->
 			<td>
 				<a class = "botao_tabela" href="/AgendaServlet/TaskEditServlet?id_tarefa=${c.id}">Editar</a>
 			</td>
