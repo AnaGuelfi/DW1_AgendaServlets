@@ -75,6 +75,11 @@ table{
     font-family: "Times New Roman";
 }
 
+.botao_tabela:hover {
+	background-color: #E9E9E9;
+	cursor: pointer;
+}
+
 table, tr, td, th {
 	border: 2px solid #020024; ;
 	margin: 0 auto;
@@ -85,4 +90,5 @@ table, tr, td, th {
 
 td, th {
 	padding: 30px;
+	white-space: nowrap;
 }
