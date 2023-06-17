@@ -18,6 +18,7 @@
 	    </ul>
 	</nav>
 </header>
+<br /><br /><br /><br /><br /><br /><br />
 <h1>Usuário registrado com sucesso!</h1>
 </body>
 </html>

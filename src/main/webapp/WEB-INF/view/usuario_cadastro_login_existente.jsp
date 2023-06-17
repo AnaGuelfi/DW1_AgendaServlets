@@ -18,6 +18,7 @@
 	    </ul>
 	</nav>
 </header>
+<br /><br /><br /><br /><br /><br /><br />
 <h1>Este username já existe, tente novamente!</h1>
 </body>
 </html>
