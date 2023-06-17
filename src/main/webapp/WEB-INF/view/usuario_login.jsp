@@ -10,6 +10,7 @@
 <style><%@include file="/WEB-INF/view/estilos.css"%></style>
 </head>
 <body>
+<header>
 <nav>
     <ul class="menu">
         <li class="borda_right">
@@ -17,6 +18,7 @@
         </li>
     </ul>
 </nav>
+</header>
 <fieldset>
 	<legend>Autenticar-se</legend>
 	<form action="<%=request.getContextPath()%>/login" method="post">

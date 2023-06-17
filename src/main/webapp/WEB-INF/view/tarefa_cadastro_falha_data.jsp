@@ -9,6 +9,7 @@
 <style><%@include file="/WEB-INF/view/estilos.css"%></style>
 </head>
 <body>
+<header>
 	<nav>
         <ul class="menu">
             <li class="borda_right">
@@ -22,6 +23,7 @@
             </li>
         </ul>
     </nav>
+</header>
 	<h1>Preencha a data de conclusão corretamente!</h1>
 </body>
 </html>

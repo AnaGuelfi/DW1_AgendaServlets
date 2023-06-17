@@ -9,7 +9,7 @@
 <title>Editar Tarefa</title>
 </head>
 <body>
-<div>
+<header>
     <nav>
         <ul class="menu">
             <li class="borda_right">
@@ -23,7 +23,7 @@
             </li>
         </ul>
     </nav>
-</div>
+</header>
 <fieldset>
 		<legend>Editar Tarefa</legend>
 		<form action="<%=request.getContextPath()%>/TaskEditServlet" method="post">

@@ -44,6 +44,7 @@ public class UsuarioTarefa extends HttpServlet {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
+			
 			request.setAttribute("lista_tarefas", tdao.getTarefasUsuario());
 			RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/usuario_tarefas.jsp");
 			dispatcher.forward(request, response);

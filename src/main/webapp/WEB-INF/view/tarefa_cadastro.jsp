@@ -9,7 +9,7 @@
 </head>
 <body>
 
-<div>
+<header>
     <nav>
         <ul class="menu">
             <li class="borda_right">
@@ -20,7 +20,7 @@
             </li>
         </ul>
     </nav>
-</div>
+</header>
 
 	<fieldset>
 		<legend>Cadastrar Tarefa</legend>

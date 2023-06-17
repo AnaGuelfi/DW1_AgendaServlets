@@ -11,7 +11,7 @@
 </head>
 <body>
 
-<div>
+<header>
     <nav>
         <ul class="menu">
             <li class="borda_right">
@@ -22,7 +22,7 @@
             </li>
         </ul>
     </nav>
-</div>
+</header>
 
 <div class = "tabela">
 

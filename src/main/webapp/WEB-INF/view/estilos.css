@@ -4,6 +4,12 @@ body{
 	font-family: "Times New Roman";
 }
 
+header {
+	position: fixed;
+    top: 0;
+    width: 100%;
+}
+
 .menu{
     list-style: none;
     margin: 0;

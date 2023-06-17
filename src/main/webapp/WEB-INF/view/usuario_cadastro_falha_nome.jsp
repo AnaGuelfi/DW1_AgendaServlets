@@ -9,13 +9,15 @@
 <style><%@include file="/WEB-INF/view/estilos.css"%></style>
 </head>
 <body>
-<nav>
-    <ul class="menu">
-        <li class="borda_right">
-            <a href = "/AgendaServlet/UserServlet">Cadastrar-se</a>
-        </li>
-    </ul>
-</nav>
+<header>
+	<nav>
+	    <ul class="menu">
+	        <li class="borda_right">
+	            <a href = "/AgendaServlet/UserServlet">Cadastrar-se</a>
+	        </li>
+	    </ul>
+	</nav>
+</header>
 <h1>Preencha o nome corretamente!</h1>
 </body>
 </html>
