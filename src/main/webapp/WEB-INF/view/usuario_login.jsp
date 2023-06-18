@@ -23,10 +23,10 @@
 	<legend>Autenticar-se</legend>
 	<form action="<%=request.getContextPath()%>/login" method="post">
 	<p>
-		Username: <input type="text" name="login" />
+		<span>Username:</span> <input type="text" name="login" />
 	</p>
 	<p>
-		Senha: <input type="password" name="password" />
+		<span>Senha:</span> <input type="password" name="password" />
 	</p>
 	<p>
 		<input class = "botao" type="submit" value="Enviar" />

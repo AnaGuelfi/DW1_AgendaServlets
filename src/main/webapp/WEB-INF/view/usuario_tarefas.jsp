@@ -30,13 +30,13 @@
 	<legend>Pesquisar Tarefa</legend>
 	<form action="<%=request.getContextPath()%>/UserTask" method="post">
 		<p>
-			Título: <input type="text" name="titulo" />
+			<span>Título:</span> <input type="text" name="titulo" />
 		</p>
 		<p>
-			Inicia-se a partir de: <input type="date" name="data_criacao" />
+			<span class="span_left">Início:</span> <input type="date" name="data_criacao" />
 		</p>
 		<p>
-			Conclui-se a partir de: <input type="date" name="data_conclusao" />
+			<span class="span_left">Conclusão:</span> <input type="date" name="data_conclusao" />
 		</p>
 		<p>
 			<input name = "buscar" class = "botao" type="submit" value="Buscar Tarefa" />

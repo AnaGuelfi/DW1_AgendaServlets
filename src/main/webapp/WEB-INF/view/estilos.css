@@ -45,6 +45,16 @@ fieldset{
 	margin-bottom: 50px;
 }
 
+span{
+	display: inline-block;
+    width: 100px;
+    text-align: left;
+}
+
+.span_left{
+	width: 150px;
+}
+
 .botao, fieldset{
 	padding: 10px 24px;
     border: 2px solid #020024;
@@ -82,7 +92,7 @@ table{
     font-family: "Times New Roman";
 }
 
-.botao_tabela:hover {
+.botao_tabela:hover, .botao:hover {
 	background-color: #E9E9E9;
 	cursor: pointer;
 }

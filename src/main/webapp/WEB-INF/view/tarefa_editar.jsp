@@ -28,20 +28,20 @@
 		<legend>Editar Tarefa</legend>
 		<form action="<%=request.getContextPath()%>/TaskEditServlet" method="post">
 			<p>
-				Título: <input type="text" name="titulo" value=<%= request.getAttribute("titulo") %> />
+				<span>Título:</span> <input type="text" name="titulo" value=<%= request.getAttribute("titulo") %> />
 			</p>
 			<p>
-				Descrição: <input type="text" name="descricao" value=<%= request.getAttribute("descricao") %> />
+				<span>Descrição:</span> <input type="text" name="descricao" value=<%= request.getAttribute("descricao") %> />
 			</p>
 			<p>
-				Data de Início: <input type="date" name="data_criacao" value=<%= request.getAttribute("data_criacao") %> />
+				<span class="span_left">Início:</span> <input type="date" name="data_criacao" value=<%= request.getAttribute("data_criacao") %> />
 			</p>
 			<p>
-				Data de Conclusão: <input type="date" name="data_conclusao" value=<%= request.getAttribute("data_conclusao") %> />
+				<span class="span_left">Conclusão:</span> <input type="date" name="data_conclusao" value=<%= request.getAttribute("data_conclusao") %> />
 			</p>
 			<% String status = (String) request.getAttribute("status"); %>
 			<p>
-				Status:
+				<span class="span_left">Status:</span>
 				<select name = "status">
 					<% if(status.equals("nao_iniciada")){ %>
 						<option value="nao_iniciada" selected>Não Iniciada</option>

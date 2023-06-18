@@ -21,16 +21,16 @@
 	<legend>Cadastrar-se</legend>
 	<form action="<%=request.getContextPath()%>/UserServlet" method="post">
 	<p>
-		Nome: <input type="text" name="nome" required="required" />
+		<span>Nome:</span> <input type="text" name="nome" required="required" />
 	</p>
 	<p>
-		E-mail: <input type="email" name="email" />
+		<span>E-mail:</span> <input type="email" name="email" />
 	</p>
 	<p>
-		Username: <input type="text" name="login" required="required" />
+		<span>Username:</span> <input type="text" name="login" required="required" />
 	</p>
 	<p>
-		Senha: <input type="password" name="password" required="required" />
+		<span>Senha:</span> <input type="password" name="password" required="required" />
 	</p>
 	<p>
 		<input class = "botao" type="submit" value="Enviar" />

@@ -26,19 +26,19 @@
 		<legend>Cadastrar Tarefa</legend>
 		<form action="<%=request.getContextPath()%>/TaskServlet" method="post">
 			<p>
-				Título: <input type="text" name="titulo" required="required" />
+				<span>Título:</span> <input type="text" name="titulo" required="required" />
 			</p>
 			<p>
-				Descrição: <input type="text" name="descricao" />
+				<span>Descrição:</span> <input type="text" name="descricao" />
 			</p>
 			<p>
-				Data de Início: <input type="date" name="data_criacao" />
+				<span class="span_left">Início:</span> <input type="date" name="data_criacao" />
 			</p>
 			<p>
-				Data de Conclusão: <input type="date" name="data_conclusao" required="required" />
+				<span class="span_left">Conclusão:</span> <input type="date" name="data_conclusao" required="required" />
 			</p>
 			<p>
-				Status:
+				<span class="span_left">Status:</span>
 				<select name = "status">
 					<option value="nao_iniciada">Não Iniciada</option>
 					<option value="em_andamento">Em Andamento</option>
