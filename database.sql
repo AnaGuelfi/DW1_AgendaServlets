@@ -19,7 +19,7 @@ create table if not exists tarefas(
     descricao varchar(100),
     data_criacao date,
     data_conclusao date not null,
-    status varchar(30),
+    status varchar(30) not null,
     primary key(id),
     foreign key(user_id) references usuarios(id)
 );
