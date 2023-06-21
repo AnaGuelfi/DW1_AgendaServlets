@@ -46,10 +46,11 @@ public class TarefaEditarServlet extends HttpServlet {
 			}
 			
 			request.setAttribute("titulo", tarefa.getTitulo());
+			System.out.println("Get: " + tarefa.getTitulo());
 			request.setAttribute("descricao", tarefa.getDescricao());
 			request.setAttribute("data_criacao", tarefa.getData_criacao());
 			request.setAttribute("data_conclusao", tarefa.getData_conclusao());
-			request.setAttribute("status", tarefa.getStatus());
+			request.setAttribute("status_t", tarefa.getStatus());
 			
 			vc.setAttribute("tarefa", tarefa);
 			

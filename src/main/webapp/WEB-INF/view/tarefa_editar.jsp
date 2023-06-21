@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ page import="jakarta.servlet.http.HttpSession" %>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -39,7 +39,7 @@
 			<p>
 				<span class="span_left">Conclusão:</span> <input type="date" name="data_conclusao" value=<%= request.getAttribute("data_conclusao") %> />
 			</p>
-			<% String status = (String) request.getAttribute("status"); %>
+			<% String status = (String) request.getAttribute("status_t"); %>
 			<p>
 				<span class="span_left">Status:</span>
 				<select name = "status">
@@ -62,19 +62,6 @@
 					<% } %>
 				</select>
 			</p>
-			<!--<p>
-				Status:
-				<select name = "status">
-					<option value="nao_iniciada">Não Iniciada</option>
-					<option value="em_andamento">Em Andamento</option>
-					<option value="finalizada">Finalizada</option>
-				</select>
-			</p>-->
-			<!-- 
-			<p>
-				Status: <input type="text" name="status" value=<%= request.getAttribute("status") %>  />
-			</p>
-			 -->
 			
 			<p>
 				<input class = "botao" type="submit" value="Enviar" />

@@ -1,5 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=ISO-8859-1" pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page import="jakarta.servlet.http.HttpSession" %>
 <!DOCTYPE html>
@@ -82,11 +81,6 @@
 				   <c:when test="${c.status=='concluida'}">Concluída</c:when>
 				</c:choose>
 			</td>
-			<!--
-			<td>
-				${c.status}
-			</td>
-			-->
 			<td>
 				<a class = "botao_tabela" href="/AgendaServlet/TaskEditServlet?id_tarefa=${c.id}">Editar</a>
 			</td>

@@ -8,7 +8,6 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import model.Tarefa;
-import model.Usuario;
 
 public class TarefaDAO {
 	
@@ -109,11 +108,17 @@ public class TarefaDAO {
         	if(rs.next()) {
         		t = new Tarefa();
         		t.setId(rs.getInt("id"));
+        		System.out.println(rs.getInt("id"));
         		t.setTitulo(rs.getString("titulo"));
+        		System.out.println(rs.getString("titulo"));
         		t.setDescricao(rs.getString("descricao"));
+        		System.out.println(rs.getString("descricao"));
         		t.setData_criacao(rs.getDate("data_criacao"));
+        		System.out.println(rs.getDate("data_criacao"));
         		t.setData_conclusao(rs.getDate("data_conclusao"));
+        		System.out.println(rs.getDate("data_conclusao"));
         		t.setStatus(rs.getString("status"));
+        		System.out.println(rs.getString("status"));
         	}
         }catch(SQLException ex) {
         	ex.printStackTrace();
@@ -135,7 +140,6 @@ public class TarefaDAO {
         	preparedStatement.setInt(1, user_id);
         	preparedStatement.setString(2, titulo);
         	System.out.println(preparedStatement);
-        	int flag = 0;
         	
         	ResultSet rs = preparedStatement.executeQuery();
         	while(rs.next()) {
@@ -146,14 +150,8 @@ public class TarefaDAO {
         		t.setData_criacao(rs.getDate("data_criacao"));
         		t.setData_conclusao(rs.getDate("data_conclusao"));
         		t.setStatus(rs.getString("status"));
-        		for(Tarefa tt : tarefasUsuario) {
-        			if(tt.getId() == t.getId()) {
-        				flag = 1;
-        			}
-        		}
-        		if(flag == 0) {
-        			tarefasEncontradas.add(t);
-        		}
+        		System.out.println(rs.getString("titulo"));
+        		tarefasEncontradas.add(t);
         	}
         }catch(SQLException ex) {
         	ex.printStackTrace();
@@ -175,7 +173,6 @@ public class TarefaDAO {
         	preparedStatement.setString(2, titulo);
         	preparedStatement.setDate(3, dataCriacao);
         	System.out.println(preparedStatement);
-        	int flag = 0;
         	
         	ResultSet rs = preparedStatement.executeQuery();
         	while(rs.next()) {
@@ -186,14 +183,7 @@ public class TarefaDAO {
         		t.setData_criacao(rs.getDate("data_criacao"));
         		t.setData_conclusao(rs.getDate("data_conclusao"));
         		t.setStatus(rs.getString("status"));
-        		for(Tarefa tt : tarefasUsuario) {
-        			if(tt.getId() == t.getId()) {
-        				flag = 1;
-        			}
-        		}
-        		if(flag == 0) {
-        			tarefasEncontradas.add(t);
-        		}
+        		tarefasEncontradas.add(t);
         	}
         }catch(SQLException ex) {
         	ex.printStackTrace();
@@ -216,7 +206,6 @@ public class TarefaDAO {
         	preparedStatement.setDate(3, dataCriacao);
         	preparedStatement.setDate(4, dataConclusao);
         	System.out.println(preparedStatement);
-        	int flag = 0;
         	
         	ResultSet rs = preparedStatement.executeQuery();
         	while(rs.next()) {
@@ -227,14 +216,7 @@ public class TarefaDAO {
         		t.setData_criacao(rs.getDate("data_criacao"));
         		t.setData_conclusao(rs.getDate("data_conclusao"));
         		t.setStatus(rs.getString("status"));
-        		for(Tarefa tt : tarefasUsuario) {
-        			if(tt.getId() == t.getId()) {
-        				flag = 1;
-        			}
-        		}
-        		if(flag == 0) {
-        			tarefasEncontradas.add(t);
-        		}
+        		tarefasEncontradas.add(t);
         	}
         }catch(SQLException ex) {
         	ex.printStackTrace();
@@ -256,7 +238,6 @@ public class TarefaDAO {
         	preparedStatement.setDate(2, dataCriacao);
         	preparedStatement.setDate(3, dataConclusao);
         	System.out.println(preparedStatement);
-        	int flag = 0;
         	
         	ResultSet rs = preparedStatement.executeQuery();
         	while(rs.next()) {
@@ -267,14 +248,7 @@ public class TarefaDAO {
         		t.setData_criacao(rs.getDate("data_criacao"));
         		t.setData_conclusao(rs.getDate("data_conclusao"));
         		t.setStatus(rs.getString("status"));
-        		for(Tarefa tt : tarefasUsuario) {
-        			if(tt.getId() == t.getId()) {
-        				flag = 1;
-        			}
-        		}
-        		if(flag == 0) {
-        			tarefasEncontradas.add(t);
-        		}
+        		tarefasEncontradas.add(t);
         	}
         }catch(SQLException ex) {
         	ex.printStackTrace();
@@ -300,7 +274,6 @@ public class TarefaDAO {
         	preparedStatement.setInt(1, user_id);
         	preparedStatement.setDate(2, data);
         	System.out.println(preparedStatement);
-        	int flag = 0;
         	
         	ResultSet rs = preparedStatement.executeQuery();
         	while(rs.next()) {
@@ -311,14 +284,8 @@ public class TarefaDAO {
         		t.setData_criacao(rs.getDate("data_criacao"));
         		t.setData_conclusao(rs.getDate("data_conclusao"));
         		t.setStatus(rs.getString("status"));
-        		for(Tarefa tt : tarefasUsuario) {
-        			if(tt.getId() == t.getId()) {
-        				flag = 1;
-        			}
-        		}
-        		if(flag == 0) {
-        			tarefasEncontradas.add(t);
-        		}
+        		System.out.println(rs.getDate("data_conclusao"));
+        		tarefasEncontradas.add(t);
         	}
         }catch(SQLException ex) {
         	ex.printStackTrace();
