@@ -60,14 +60,8 @@ public class UsuarioTarefa extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String usuario = (String) request.getSession().getAttribute("usuario");
 		if(usuario != null) {
-			int flag = -1;
-			int id_tarefa = flag;
 			ServletContext sc = getServletContext();
 			Usuario u = (Usuario) sc.getAttribute("usuario");
-			
-			if(request.getParameter("id_excluir") != null) {
-				id_tarefa = Integer.parseInt(request.getParameter("id_excluir"));
-			}
 			
 			String tituloBuscar = (String) request.getParameter("titulo");
 			String data_criacao = request.getParameter("data_criacao");
@@ -77,12 +71,6 @@ public class UsuarioTarefa extends HttpServlet {
 			java.sql.Date data_conclusaoSQL;
 			
 			try {
-				if(id_tarefa != flag) {
-					tdao.excluirTarefa(id_tarefa);
-					RequestDispatcher dispatcher = request.getRequestDispatcher("/WEB-INF/view/tarefa_excluida.jsp");
-					dispatcher.forward(request, response);
-				}
-				
 				if(tituloBuscar.equals("") && data_criacao.equals("") && data_conclusao.equals("")) {
 					try {
 						tdao.buscarTarefas(u.getId());

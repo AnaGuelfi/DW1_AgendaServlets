@@ -59,6 +59,7 @@
 		<th>Status</th>
 		<th>Alterar Tarefa</th>
 		<th>Excluir Tarefa</th>
+		
 	</tr>
 	<c:forEach items="${requestScope.lista_tarefas}" var="c">
 		<tr>
@@ -85,8 +86,7 @@
 				<a class = "botao_tabela" href="/AgendaServlet/TaskEditServlet?id_tarefa=${c.id}">Editar</a>
 			</td>
 			<td>
-				<input type="hidden" name="id_excluir" value="${c.id}" />
-				<input class = "botao_tabela" type="submit" value="Excluir" />
+				<a class = "botao_tabela" href="/AgendaServlet/TaskDeleteServlet?id_excluir=${c.id}">Excluir</a>
 			</td>
 		</tr>
 	</c:forEach>
